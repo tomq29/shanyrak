@@ -41,7 +41,8 @@
   .pop table{border-collapse:collapse;margin:6px 0}
   .pop td{padding:1px 8px 1px 0}
   .pop a{color:#0563C1}
-  .pop img{width:100%;max-width:270px;border-radius:6px;margin-bottom:6px;display:block}
+  .pop img{width:100%;max-width:270px;height:150px;object-fit:cover;border-radius:6px;
+           margin-bottom:6px;display:block;background:#eee}
   .pop .drop{color:#1a7f37;font-weight:600}
   .pop .rise{color:#d1242f;font-weight:600}
   .pop .acts{margin-top:9px;padding-top:8px;border-top:1px solid #eee;display:flex;gap:5px;flex-wrap:wrap}
@@ -109,7 +110,9 @@ const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
 const fmt = n => Math.round(n).toLocaleString('ru-RU');
 const SELLERS = {owner:'хозяин', agent:'агент', agency:'агентство', developer:'застройщик'};
 
-const map = L.map('map').setView([51.13, 71.43], 12);
+// The filter panel sits in the top left corner, so the zoom buttons move over.
+const map = L.map('map', {zoomControl: false}).setView([51.13, 71.43], 12);
+L.control.zoom({position: 'topright'}).addTo(map);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
   {maxZoom:19, attribution:'&copy; OpenStreetMap'}).addTo(map);
 const layer = L.layerGroup().addTo(map);

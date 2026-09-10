@@ -111,6 +111,21 @@ def test_connect_upgrades_a_database_from_an_older_version(tmp_path):
     conn.close()
 
 
+def test_schema_can_be_pointed_somewhere_else(tmp_path, monkeypatch):
+    custom = tmp_path / "custom.sql"
+    custom.write_text("CREATE TABLE IF NOT EXISTS marker (id TEXT);", encoding="utf-8")
+    monkeypatch.setenv("SHANYRAK_SCHEMA", str(custom))
+
+    assert "marker" in db.schema_sql()
+
+
+def test_missing_schema_says_where_it_looked(tmp_path, monkeypatch):
+    monkeypatch.setenv("SHANYRAK_SCHEMA", str(tmp_path / "absent.sql"))
+
+    with pytest.raises(FileNotFoundError, match="absent.sql"):
+        db.schema_sql()
+
+
 def test_counts_summarise_the_database(conn):
     db.upsert(conn, listing("1", lat=51.1, lon=71.4))
     db.upsert(conn, listing("2"))

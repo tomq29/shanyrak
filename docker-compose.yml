@@ -1,0 +1,27 @@
+name: shanyrak
+
+services:
+  server:
+    build: .
+    command: ["-config", "/config/shanyrak.toml", "-addr", ":8080"]
+    ports:
+      - "${SHANYRAK_PORT:-8080}:8080"
+    environment:
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
+      TELEGRAM_CHAT_ID: ${TELEGRAM_CHAT_ID:-}
+    volumes:
+      - ./shanyrak.toml:/config/shanyrak.toml:ro
+      - ./data:/config/data
+    restart: unless-stopped
+
+  scraper:
+    build:
+      context: .
+      dockerfile: scraper/Dockerfile
+    command: ["scan", "--every", "6h"]
+    environment:
+      SHANYRAK_CONFIG: /config/shanyrak.toml
+    volumes:
+      - ./shanyrak.toml:/config/shanyrak.toml:ro
+      - ./data:/config/data
+    restart: unless-stopped

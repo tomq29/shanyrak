@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 import sqlite3
 from dataclasses import asdict
 from datetime import datetime
@@ -7,7 +8,11 @@ from pathlib import Path
 
 from .parse import Listing
 
-SCHEMA_PATH = Path(__file__).resolve().parents[2] / "schema" / "schema.sql"
+SCHEMA_CANDIDATES = (
+    Path(__file__).resolve().parents[2] / "schema" / "schema.sql",
+    Path.cwd() / "schema" / "schema.sql",
+    Path("/app/schema/schema.sql"),
+)
 
 AD_COLUMNS = (
     "title",
@@ -39,6 +44,18 @@ def now() -> str:
     return datetime.now().isoformat(timespec="seconds")
 
 
+def schema_sql() -> str:
+    """The schema is shared with the Go server, so it lives outside the package
+    and has to be found both in a checkout and in the installed container."""
+    override = os.environ.get("SHANYRAK_SCHEMA")
+    candidates = (Path(override),) if override else SCHEMA_CANDIDATES
+    for candidate in candidates:
+        if candidate.is_file():
+            return candidate.read_text(encoding="utf-8")
+    tried = ", ".join(str(candidate) for candidate in candidates)
+    raise FileNotFoundError(f"schema.sql not found, looked in: {tried}")
+
+
 def connect(path: str | Path) -> sqlite3.Connection:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -48,7 +65,7 @@ def connect(path: str | Path) -> sqlite3.Connection:
     conn.execute("PRAGMA journal_mode=WAL")
     conn.execute("PRAGMA busy_timeout=5000")
     conn.execute("PRAGMA foreign_keys=ON")
-    conn.executescript(SCHEMA_PATH.read_text(encoding="utf-8"))
+    conn.executescript(schema_sql())
     _add_missing_columns(conn)
     conn.execute("UPDATE statuses SET status='disliked' WHERE status='hidden'")
     conn.commit()
