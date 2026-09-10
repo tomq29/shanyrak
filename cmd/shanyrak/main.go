@@ -15,6 +15,7 @@ import (
 
 	"github.com/tomq29/shanyrak/internal/config"
 	"github.com/tomq29/shanyrak/internal/httpapi"
+	"github.com/tomq29/shanyrak/internal/notify"
 	"github.com/tomq29/shanyrak/internal/store"
 	"github.com/tomq29/shanyrak/web"
 )
@@ -48,6 +49,11 @@ func run(configPath, addr string, log *slog.Logger) error {
 		log.Info("search ready", "name", name, "database", conf.DatabasePath(name))
 	}
 
+	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
+	defer stop()
+
+	startDigest(ctx, conf, searches, log)
+
 	page, err := web.MapPage()
 	if err != nil {
 		return fmt.Errorf("parse map page: %w", err)
@@ -66,9 +72,6 @@ func run(configPath, addr string, log *slog.Logger) error {
 		IdleTimeout:       120 * time.Second,
 	}
 
-	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
-	defer stop()
-
 	go func() {
 		<-ctx.Done()
 		shutdown, cancel := context.WithTimeout(context.Background(), 10*time.Second)
@@ -83,6 +86,26 @@ func run(configPath, addr string, log *slog.Logger) error {
 		return err
 	}
 	return nil
+}
+
+// startDigest is a no-op unless both Telegram variables are set, so the server
+// runs the same way with or without notifications.
+func startDigest(ctx context.Context, conf config.Config, searches []httpapi.Search, log *slog.Logger) {
+	token, chatID := os.Getenv("TELEGRAM_BOT_TOKEN"), os.Getenv("TELEGRAM_CHAT_ID")
+	if token == "" || chatID == "" {
+		log.Info("telegram digest disabled", "reason", "TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID not set")
+		return
+	}
+
+	watched := make([]notify.Search, 0, len(searches))
+	for _, search := range searches {
+		watched = append(watched, notify.Search{Name: search.Name, Source: search.Store})
+	}
+
+	watcher := notify.New(watched, notify.NewTelegram(token, chatID), conf.Telegram.Deviation, log)
+	go watcher.Run(ctx, conf.Telegram.Interval)
+	log.Info("telegram digest enabled",
+		"every", conf.Telegram.Interval, "below_median_percent", conf.Telegram.Deviation)
 }
 
 func env(key, fallback string) string {

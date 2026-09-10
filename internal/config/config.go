@@ -7,6 +7,7 @@ import (
 	"os"
 	"path/filepath"
 	"sort"
+	"time"
 
 	"github.com/BurntSushi/toml"
 )
@@ -15,11 +16,23 @@ type Config struct {
 	Path     string
 	DataDir  string
 	Searches []string
+	Telegram Telegram
+}
+
+// Telegram tunes the digest; the bot token and chat id come from the
+// environment, so secrets never sit in the config file.
+type Telegram struct {
+	Deviation float64
+	Interval  time.Duration
 }
 
 type file struct {
 	DataDir  string                    `toml:"data_dir"`
 	Searches map[string]map[string]any `toml:"searches"`
+	Telegram struct {
+		Deviation *float64 `toml:"deviation"`
+		Interval  string   `toml:"interval"`
+	} `toml:"telegram"`
 }
 
 func Load(path string) (Config, error) {
@@ -50,7 +63,23 @@ func Load(path string) (Config, error) {
 		dataDir = filepath.Join(filepath.Dir(path), dataDir)
 	}
 
-	return Config{Path: path, DataDir: dataDir, Searches: names}, nil
+	telegram := Telegram{Deviation: -10, Interval: time.Hour}
+	if parsed.Telegram.Deviation != nil {
+		telegram.Deviation = *parsed.Telegram.Deviation
+	}
+	if parsed.Telegram.Interval != "" {
+		telegram.Interval, err = time.ParseDuration(parsed.Telegram.Interval)
+		if err != nil {
+			return Config{}, fmt.Errorf("%s: telegram.interval: %w", path, err)
+		}
+	}
+
+	return Config{
+		Path:     path,
+		DataDir:  dataDir,
+		Searches: names,
+		Telegram: telegram,
+	}, nil
 }
 
 func (c Config) DatabasePath(search string) string {
