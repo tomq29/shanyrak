@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shanyrak — квартиры на карте</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  html,body{margin:0;height:100%;font:13px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+  #map{height:100%;background:#eee}
+  #ui{position:absolute;top:12px;left:12px;z-index:1000;background:#fff;padding:14px 16px;
+      border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.25);width:264px;
+      max-height:calc(100% - 40px);overflow:auto}
+  #ui h3{margin:0 0 8px;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+  #ui h4{margin:14px 0 4px;font-size:12px;color:#555;text-transform:uppercase;letter-spacing:.04em}
+  #ui .grp{margin-bottom:10px}
+  #ui label{display:block;margin:3px 0;cursor:pointer}
+  #ui input[type=range]{width:100%;margin:2px 0}
+  #ui select{font:inherit;padding:2px 4px;border:1px solid #ccc;border-radius:4px}
+  #ui .val{font-weight:600}
+  #ui .muted{color:#777;font-size:12px}
+  #ui .chips label{display:inline-block;margin-right:10px}
+  #ui .nums{display:flex;align-items:center;gap:6px;margin:4px 0}
+  #ui .nums input{width:100%;padding:3px 5px;border:1px solid #ccc;border-radius:4px;
+                  font-size:12px;font-family:inherit}
+  #ui .list{max-height:132px;overflow:auto;border:1px solid #eee;border-radius:5px;padding:5px 7px}
+  #ui .list label{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  #ui .list .n{color:#999}
+  #cnt{font-weight:600;margin-bottom:4px}
+  #marks{color:#777;font-size:12px;margin-bottom:6px}
+  #ui button{width:100%;padding:6px;border:1px solid #ccc;background:#f6f6f6;
+             border-radius:5px;cursor:pointer;font-size:13px;margin-top:5px}
+  #ui button:hover{background:#eee}
+  #err{position:absolute;top:12px;right:12px;z-index:1001;background:#d1242f;color:#fff;
+       padding:8px 12px;border-radius:6px;display:none;max-width:340px}
+  .legend{background:#fff;padding:9px 11px;border-radius:6px;line-height:1.7;
+          box-shadow:0 1px 5px rgba(0,0,0,.3);font-size:12px}
+  .legend i{width:12px;height:12px;float:left;margin:4px 8px 0 0;border-radius:50%;opacity:.9}
+  .pop b{font-size:15px}
+  .pop table{border-collapse:collapse;margin:6px 0}
+  .pop td{padding:1px 8px 1px 0}
+  .pop a{color:#0563C1}
+  .pop img{width:100%;max-width:270px;border-radius:6px;margin-bottom:6px;display:block}
+  .pop .drop{color:#1a7f37;font-weight:600}
+  .pop .rise{color:#d1242f;font-weight:600}
+  .pop .acts{margin-top:9px;padding-top:8px;border-top:1px solid #eee;display:flex;gap:5px;flex-wrap:wrap}
+  .pop .acts button{flex:1 0 auto;padding:5px 8px;border:1px solid #ccc;background:#fafafa;
+             border-radius:5px;cursor:pointer;font-size:12px}
+  .pop .acts button:hover{background:#efefef}
+  .pop .acts button.on{background:#0563C1;color:#fff;border-color:#0563C1}
+  .pop .hide{display:block;margin-top:7px;cursor:pointer;color:#555;font-size:12px}
+  .leaflet-tooltip.lbl{background:rgba(255,255,255,.85);border:0;box-shadow:none;
+       padding:0 3px;font-size:11px;font-weight:600;color:#333}
+  .leaflet-tooltip.lbl:before{display:none}
+  body.nolbl .leaflet-tooltip.lbl{display:none}
+</style>
+</head>
+<body>
+<div id="ui">
+  <h3>Фильтры <select id="search"></select></h3>
+  <div id="cnt">загружаю…</div>
+  <div id="marks"></div>
+
+  <div class="grp">
+    <div>₸ за м²: <span class="val" id="ppmTxt"></span></div>
+    <div class="nums">
+      <input type="number" id="ppmMinNum" step="5000"> —
+      <input type="number" id="ppmMaxNum" step="5000">
+    </div>
+    <input type="range" id="ppmMin"><input type="range" id="ppmMax">
+    <div class="muted">медиана выборки: <span id="medTxt"></span></div>
+  </div>
+  <div class="grp">
+    <div>Цена, млн ₸: до <span class="val" id="priceTxt"></span></div>
+    <input type="range" id="priceMax">
+  </div>
+  <div class="grp">
+    <div>Площадь, м²: <span class="val" id="areaTxt"></span></div>
+    <input type="range" id="areaMin"><input type="range" id="areaMax">
+  </div>
+  <div class="grp chips"><div>Комнат:</div><div id="rooms"></div></div>
+
+  <h4>Дом</h4>
+  <div class="grp list" id="houses"></div>
+
+  <h4>Показывать</h4>
+  <div class="grp">
+    <label><input type="checkbox" id="ownersOnly"> только от хозяев</label>
+    <label><input type="checkbox" id="noFlags"> скрыть с флагами</label>
+    <label><input type="checkbox" id="onlyLiked"> только лайки</label>
+    <label><input type="checkbox" id="hideViewed"> скрывать просмотренные</label>
+    <label><input type="checkbox" id="showRejected"> показывать отклонённые</label>
+    <label><input type="checkbox" id="labels" checked> подписи ₸/м²</label>
+  </div>
+
+  <button id="reset">Сбросить фильтры</button>
+</div>
+<div id="err"></div>
+<div id="map"></div>
+
+<script>
+const BOOT = {{.}};
+const API = '/api/searches/' + encodeURIComponent(BOOT.search);
+
+const el = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
+  ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt = n => Math.round(n).toLocaleString('ru-RU');
+const SELLERS = {owner:'хозяин', agent:'агент', agency:'агентство', developer:'застройщик'};
+
+const map = L.map('map').setView([51.13, 71.43], 12);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+  {maxZoom:19, attribution:'&copy; OpenStreetMap'}).addTo(map);
+const layer = L.layerGroup().addTo(map);
+
+let items = [], median = 0, recs = [], hiddenHouses = new Set();
+
+function fail(message){
+  const box = el('err');
+  box.textContent = message;
+  box.style.display = 'block';
+  setTimeout(() => { box.style.display = 'none'; }, 6000);
+}
+
+function color(deviation){
+  if(deviation <= -15) return '#1a7f37';
+  if(deviation <= -5)  return '#6cc24a';
+  if(deviation < 5)    return '#e3b341';
+  if(deviation < 15)   return '#e8843c';
+  return '#d1242f';
+}
+
+// Several flats in one building share coordinates; spread them around a small
+// circle so every point stays clickable.
+function spread(list){
+  const groups = {};
+  list.forEach(i => {
+    const key = i.lat.toFixed(4) + ',' + i.lon.toFixed(4);
+    (groups[key] = groups[key] || []).push(i);
+  });
+  Object.values(groups).forEach(group => {
+    if(group.length === 1){ group[0]._lat = group[0].lat; group[0]._lon = group[0].lon; return; }
+    const radius = 0.00013 * (group.length > 6 ? 1.5 : 1);
+    group.forEach((i, n) => {
+      const angle = 2 * Math.PI * n / group.length;
+      i._lat = i.lat + radius * Math.cos(angle);
+      i._lon = i.lon + radius * Math.sin(angle) / Math.cos(i.lat * Math.PI / 180);
+      i._near = group.length - 1;
+    });
+  });
+}
+
+function popup(i){
+  const delta = i.delta ? `<div class="${i.delta < 0 ? 'drop' : 'rise'}">
+      ${i.delta < 0 ? '▼ подешевело' : '▲ подорожало'} на ${fmt(Math.abs(i.delta))} ₸</div>` : '';
+  const button = (key, text) => `<button data-act="${key}" data-id="${esc(i.id)}"
+       class="${i.status === key ? 'on' : ''}">${text}</button>`;
+  const house = esc(i.address || 'без адреса');
+
+  return `<div class="pop">
+    ${i.photo ? `<img src="${esc(i.photo)}" alt="" loading="lazy">` : ''}
+    <b>${fmt(i.price)} ₸</b> &nbsp;
+    <span style="color:${color(i.dev)};font-weight:600">${i.dev > 0 ? '+' : ''}${i.dev}%</span>
+    ${delta}
+    <table>
+      <tr><td>Цена за м²</td><td><b>${fmt(i.ppm)} ₸</b></td></tr>
+      <tr><td>Площадь</td><td>${i.area} м² · ${i.rooms || '?'}-комн.</td></tr>
+      <tr><td>Этаж</td><td>${i.floor || '?'}${i.floors ? ' из ' + i.floors : ''}</td></tr>
+      <tr><td>Продавец</td><td>${esc(SELLERS[i.seller] || 'не указан')}${i.owner ? ' · ' + esc(i.owner) : ''}</td></tr>
+      <tr><td>В базе</td><td>${i.days} дн.${i.posted ? ' · подано ' + esc(i.posted) : ''}</td></tr>
+      ${i.flags ? `<tr><td>Флаги</td><td style="color:#d1242f">${esc(i.flags)}</td></tr>` : ''}
+      ${i.gone ? '<tr><td>Статус</td><td style="color:#d1242f">снято с публикации</td></tr>' : ''}
+    </table>
+    <div style="max-width:270px;color:#666">${house}</div>
+    ${i._near ? `<div style="color:#b35c00;font-size:12px">В этой точке ещё ${i._near} — раздвинуты по кругу</div>` : ''}
+    <a href="${esc(i.link)}" target="_blank" rel="noopener">Открыть на Крыше →</a>
+    <div class="acts">${button('liked','♥ лайк')}${button('viewed','смотрел')}${button('disliked','✕ не подходит')}</div>
+    <label class="hide"><input type="checkbox" class="hideHouse" data-house="${house}"
+      ${hiddenHouses.has(i.address) ? 'checked' : ''}> скрыть весь дом «${house}»</label>
+  </div>`;
+}
+
+async function setStatus(id, status){
+  const url = `${API}/listings/${encodeURIComponent(id)}/status`;
+  const response = status
+    ? await fetch(url, {method:'PUT', headers:{'Content-Type':'application/json'},
+                        body: JSON.stringify({status})})
+    : await fetch(url, {method:'DELETE'});
+  if(!response.ok) throw new Error('сервер ответил ' + response.status);
+}
+
+function build(){
+  spread(items.filter(i => i.lat && i.lon));
+  recs = items.filter(i => i.lat && i.lon).map(i => {
+    const marker = L.circleMarker([i._lat, i._lon],
+      {radius:9, color:'#fff', weight:2, fillColor:color(i.dev), fillOpacity:.95});
+    marker.bindPopup(() => popup(i));
+    marker.bindTooltip(fmt(i.ppm / 1000) + 'т',
+      {permanent:true, direction:'top', className:'lbl', offset:[0,-8]});
+    return {item:i, marker};
+  });
+}
+
+function setupControls(){
+  const ppms = items.map(i => i.ppm);
+  const prices = items.map(i => i.price);
+  const areas = items.map(i => i.area || 0);
+  const lo = Math.floor(Math.min(...ppms) / 1000) * 1000;
+  const hi = Math.ceil(Math.max(...ppms) / 1000) * 1000;
+
+  [['ppmMin', lo], ['ppmMax', hi]].forEach(([id, value]) => {
+    const input = el(id);
+    input.min = lo; input.max = hi; input.step = 1000; input.value = value;
+    el(id + 'Num').min = lo; el(id + 'Num').max = hi; el(id + 'Num').value = value;
+  });
+
+  const price = el('priceMax');
+  price.min = Math.floor(Math.min(...prices) / 1e6);
+  price.max = Math.ceil(Math.max(...prices) / 1e6);
+  price.step = 0.5; price.value = price.max;
+
+  const areaMin = el('areaMin'), areaMax = el('areaMax');
+  areaMin.min = areaMax.min = Math.floor(Math.min(...areas));
+  areaMin.max = areaMax.max = Math.ceil(Math.max(...areas));
+  areaMin.value = areaMin.min; areaMax.value = areaMax.max;
+
+  const rooms = [...new Set(items.map(i => i.rooms).filter(Boolean))].sort();
+  el('rooms').innerHTML = rooms.map(r =>
+    `<label><input type="checkbox" class="rm" value="${r}" checked> ${r}</label>`).join('');
+
+  const counts = {};
+  items.forEach(i => { counts[i.address || ''] = (counts[i.address || ''] || 0) + 1; });
+  el('houses').innerHTML = Object.keys(counts)
+    .sort((a, b) => counts[b] - counts[a])
+    .map(house => `<label title="${esc(house)}"><input type="checkbox" class="house"
+        value="${esc(house)}" ${hiddenHouses.has(house) ? '' : 'checked'}>
+        ${esc(house || 'без адреса')} <span class="n">(${counts[house]})</span></label>`).join('');
+
+  el('medTxt').textContent = fmt(median) + ' ₸';
+  ['ownersOnly','noFlags','onlyLiked','hideViewed','showRejected']
+    .forEach(id => { el(id).checked = false; });
+}
+
+function currentFilters(){
+  let [lo, hi] = [+el('ppmMin').value, +el('ppmMax').value];
+  if(lo > hi) [lo, hi] = [hi, lo];
+  let [aMin, aMax] = [+el('areaMin').value, +el('areaMax').value];
+  if(aMin > aMax) [aMin, aMax] = [aMax, aMin];
+
+  return {
+    lo, hi, aMin, aMax,
+    priceMax: +el('priceMax').value * 1e6,
+    rooms: new Set([...document.querySelectorAll('.rm:checked')].map(c => +c.value)),
+    ownersOnly: el('ownersOnly').checked,
+    noFlags: el('noFlags').checked,
+    onlyLiked: el('onlyLiked').checked,
+    hideViewed: el('hideViewed').checked,
+    showRejected: el('showRejected').checked,
+  };
+}
+
+function matches(i, f){
+  let byStatus;
+  if(f.onlyLiked) byStatus = i.status === 'liked';
+  else if(i.status === 'disliked') byStatus = f.showRejected;
+  else if(i.status === 'viewed') byStatus = !f.hideViewed;
+  else byStatus = true;
+
+  return byStatus
+    && i.ppm >= f.lo && i.ppm <= f.hi && i.price <= f.priceMax
+    && (i.area || 0) >= f.aMin && (i.area || 0) <= f.aMax
+    && (!i.rooms || f.rooms.has(i.rooms))
+    && !hiddenHouses.has(i.address || '')
+    && (!f.ownersOnly || i.seller === 'owner')
+    && (!f.noFlags || !i.flags);
+}
+
+function style(i){
+  const faded = i.status === 'viewed' || i.status === 'disliked';
+  return {fillOpacity: faded ? 0.3 : 0.95,
+          color: i.status === 'liked' ? '#0563C1' : '#fff',
+          weight: i.status === 'liked' ? 4 : 2};
+}
+
+function counters(shown){
+  let text = `Показано ${shown.length} из ${items.length}`;
+  if(shown.length){
+    const sorted = [...shown].sort((a, b) => a - b);
+    const mid = sorted.length % 2
+      ? sorted[(sorted.length - 1) / 2]
+      : (sorted[sorted.length / 2 - 1] + sorted[sorted.length / 2]) / 2;
+    text += ` · медиана ${fmt(mid)} ₸/м²`;
+  }
+  el('cnt').textContent = text;
+
+  const by = {liked:0, viewed:0, disliked:0};
+  items.forEach(i => { if(by[i.status] !== undefined) by[i.status]++; });
+  el('marks').textContent = by.liked + by.viewed + by.disliked
+    ? `♥ ${by.liked} · смотрел ${by.viewed} · не подходит ${by.disliked}` : '';
+}
+
+function apply(){
+  const f = currentFilters();
+  el('ppmTxt').textContent = fmt(f.lo) + ' — ' + fmt(f.hi);
+  el('priceTxt').textContent = (+el('priceMax').value).toFixed(1);
+  el('areaTxt').textContent = f.aMin + ' — ' + f.aMax;
+
+  layer.clearLayers();
+  const shown = [];
+  recs.forEach(({item: i, marker}) => {
+    if(!matches(i, f)) return;
+    marker.setStyle(style(i));
+    layer.addLayer(marker);
+    shown.push(i.ppm);
+  });
+  counters(shown);
+}
+
+// Marking a listing must not rebuild the layer, or the open popup would close
+// under the cursor. Only redraw everything when the mark hides the point.
+function marked(rec, previous){
+  const {item, marker} = rec;
+  const f = currentFilters();
+  if(!matches(item, f)){
+    apply();
+    map.closePopup();
+    return;
+  }
+  marker.setStyle(style(item));
+  counters(recs.filter(r => matches(r.item, f)).map(r => r.item.ppm));
+  if(previous !== item.status){
+    document.querySelectorAll('.pop .acts button')
+      .forEach(b => b.classList.toggle('on', b.dataset.act === item.status));
+  }
+}
+
+document.addEventListener('click', async e => {
+  const button = e.target.closest('.acts button');
+  if(!button) return;
+  const {id, act} = button.dataset;
+  const rec = recs.find(r => r.item.id === id);
+  const previous = rec.item.status;
+  const next = previous === act ? '' : act;
+
+  rec.item.status = next;
+  marked(rec, previous);
+  try {
+    await setStatus(id, next);
+  } catch (error) {
+    rec.item.status = previous;
+    marked(rec, next);
+    fail('Отметка не сохранилась: ' + error.message);
+  }
+});
+
+document.addEventListener('change', e => {
+  if(e.target.classList.contains('hideHouse')){
+    const house = e.target.dataset.house;
+    e.target.checked ? hiddenHouses.add(house) : hiddenHouses.delete(house);
+    const box = document.querySelector(`.house[value="${CSS.escape(house)}"]`);
+    if(box) box.checked = !e.target.checked;
+    apply();
+    if(e.target.checked) map.closePopup();
+  }
+});
+
+el('ui').addEventListener('input', e => {
+  const id = e.target.id;
+  if(e.target.classList.contains('house')){
+    const house = e.target.value;
+    e.target.checked ? hiddenHouses.delete(house) : hiddenHouses.add(house);
+  }
+  if(id === 'ppmMin' || id === 'ppmMax') el(id + 'Num').value = e.target.value;
+  if(id === 'ppmMinNum' || id === 'ppmMaxNum'){
+    const value = +e.target.value;
+    if(!isNaN(value)) el(id.replace('Num','')).value = value;
+  }
+  if(id === 'labels') document.body.classList.toggle('nolbl', !e.target.checked);
+  apply();
+});
+
+el('reset').addEventListener('click', () => { hiddenHouses.clear(); setupControls(); apply(); });
+el('search').addEventListener('change', e => { location.href = '/s/' + encodeURIComponent(e.target.value); });
+
+async function load(){
+  el('search').innerHTML = BOOT.searches
+    .map(name => `<option ${name === BOOT.search ? 'selected' : ''}>${esc(name)}</option>`).join('');
+
+  const response = await fetch(API + '/listings');
+  if(!response.ok) throw new Error('сервер ответил ' + response.status);
+  const data = await response.json();
+
+  items = data.items;
+  median = data.stats.median;
+  if(!items.length){
+    el('cnt').textContent = 'В базе пусто — запусти скрапер';
+    return;
+  }
+
+  build();
+  setupControls();
+  apply();
+  const mapped = recs.map(r => [r.item._lat, r.item._lon]);
+  if(mapped.length) map.fitBounds(mapped, {padding:[40,40]});
+}
+
+const legend = L.control({position:'bottomright'});
+legend.onAdd = () => {
+  const box = L.DomUtil.create('div','legend');
+  box.innerHTML = '<b>₸/м² к медиане</b><br>' +
+    [['#1a7f37','дешевле 15%+'],['#6cc24a','дешевле 5-15%'],['#e3b341','около медианы'],
+     ['#e8843c','дороже 5-15%'],['#d1242f','дороже 15%+']]
+    .map(([c,t]) => `<i style="background:${c}"></i>${t}`).join('<br>');
+  return box;
+};
+legend.addTo(map);
+L.DomEvent.disableClickPropagation(el('ui'));
+L.DomEvent.disableScrollPropagation(el('ui'));
+
+load().catch(error => {
+  el('cnt').textContent = 'Не удалось загрузить данные';
+  fail(error.message);
+});
+</script>
+</body>
+</html>
