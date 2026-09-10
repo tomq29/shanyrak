@@ -134,9 +134,18 @@ deviation = -10                # report listings 10% or more below the median
 interval = "1h"
 ```
 
+The token and chat id come from the environment, never from the config file:
+
+```bash
+cp .env.example .env           # docker compose reads it automatically
+```
+
+For a local run, export them instead:
+
 ```bash
 export TELEGRAM_BOT_TOKEN=...  # from @BotFather
-export TELEGRAM_CHAT_ID=...
+export TELEGRAM_CHAT_ID=...    # from @userinfobot
+make serve
 ```
 
 The token never goes into the config file. Without both variables the server
