@@ -1,0 +1,52 @@
+# Copy to shanyrak.toml and edit. One [searches.*] section per city or area you
+# track: each gets its own database and its own median, so prices are never
+# compared across cities.
+
+data_dir = "data"
+
+[defaults]
+max_pages = 40          # pages per area, 20 listings per page
+delay = [1.0, 2.0]      # random pause between requests, seconds
+request_timeout = 25
+retries = 3
+
+[defaults.filters]
+has_photo = true
+
+[defaults.local]
+# Applied after fetching, to drop obvious junk: shares in a flat, price typos.
+min_price_per_m2 = 400_000
+max_price_per_m2 = 1_500_000
+# Listings whose text contains these are kept but flagged in the UI.
+flag_words = ["чернов", "предчистов", "без ремонта", "доля", "залог", "обмен"]
+
+[searches.astana]
+section = "/prodazha/kvartiry/astana/"
+# Areas drawn on the "Карта" tab of krisha.kz: draw them, then paste the whole
+# URL from the address bar. Krisha allows five shapes per drawing, so add more
+# URLs to cover more of the city. Omit `areas` to search the whole section.
+areas = [
+  "https://krisha.kz/map/prodazha/kvartiry/astana/?das[price][to]=40000000&zoom=13&lat=51.09834&lon=71.41996&areas=p51.117310,71.465974,51.119423,71.453290,51.110898,71.451904,51.106551,71.481965,51.117310,71.465974",
+]
+
+[searches.astana.filters]
+price_to = 40_000_000
+square_from = 30
+# rooms = [2, 3]
+# floor_from = 2
+# not_first_floor = true
+# not_last_floor = false
+# house_year_from = 1980
+# who = 1            # owners only
+# not_dorm = true
+# text = "панорамные окна"
+
+# [searches.almaty]
+# section = "/prodazha/kvartiry/almaty/"
+# areas = ["https://krisha.kz/map/prodazha/kvartiry/almaty/?areas=p43.26,76.96,43.25,76.93,43.23,76.95,43.26,76.96"]
+#
+# [searches.almaty.filters]
+# price_to = 44_000_000
+#
+# [searches.almaty.local]
+# max_price_per_m2 = 1_100_000
