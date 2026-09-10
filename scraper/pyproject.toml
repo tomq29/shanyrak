@@ -1,0 +1,22 @@
+[project]
+name = "shanyrak-scraper"
+version = "0.1.0"
+description = "Collects krisha.kz listings into SQLite for the Shanyrak map"
+requires-python = ">=3.11"
+dependencies = ["requests>=2.32"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+shanyrak-scraper = "shanyrak_scraper.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["shanyrak_scraper*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

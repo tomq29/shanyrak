@@ -1,0 +1,650 @@
+{
+ "html": "<div class=\"a-map-sidebar-item\" data-id=\"1015617521\"><span class=\"a-map-sidebar-item__date\"> 11 сентября </span></div>\n<div class=\"a-map-sidebar-item\" data-id=\"1011956009\"><span class=\"a-map-sidebar-item__date\"> 10 сентября </span></div>\n<div class=\"a-map-sidebar-item\" data-id=\"1011297841\"><span class=\"a-map-sidebar-item__date\"> 10 сентября </span></div>\n<div class=\"a-map-sidebar-item\" data-id=\"1012326131\"><span class=\"a-map-sidebar-item__date\"> 10 сентября </span></div>\n<div class=\"a-map-sidebar-item\" data-id=\"1013857140\"><span class=\"a-map-sidebar-item__date\"> 10 сентября </span></div>\n<div class=\"a-map-sidebar-item\" data-id=\"1014727622\"><span class=\"a-map-sidebar-item__date\"> 10 сентября </span></div>\n<div class=\"a-map-sidebar-item\" data-id=\"1012566248\"><span class=\"a-map-sidebar-item__date\"> 10 сентября </span></div>\n<div class=\"a-map-sidebar-item\" data-id=\"1007470358\"><span class=\"a-map-sidebar-item__date\"> 10 сентября </span></div>\n<div class=\"a-map-sidebar-item\" data-id=\"698717298\"><span class=\"a-map-sidebar-item__date\"> 10 сентября </span></div>\n<div class=\"a-map-sidebar-item\" data-id=\"1014495523\"><span class=\"a-map-sidebar-item__date\"> 10 сентября </span></div>\n<div class=\"a-map-sidebar-item\" data-id=\"1013875698\"><span class=\"a-map-sidebar-item__date\"> 10 сентября </span></div>\n<div class=\"a-map-sidebar-item\" data-id=\"1012564519\"><span class=\"a-map-sidebar-item__date\"> 10 сентября </span></div>\n<div class=\"a-map-sidebar-item\" data-id=\"1015209082\"><span class=\"a-map-sidebar-item__date\"> 10 сентября </span></div>\n<div class=\"a-map-sidebar-item\" data-id=\"1014086020\"><span class=\"a-map-sidebar-item__date\"> 10 сентября </span></div>\n<div class=\"a-map-sidebar-item\" data-id=\"1014979351\"><span class=\"a-map-sidebar-item__date\"> 10 сентября </span></div>\n<div class=\"a-map-sidebar-item\" data-id=\"1014935671\"><span class=\"a-map-sidebar-item__date\"> 10 сентября </span></div>\n<div class=\"a-map-sidebar-item\" data-id=\"1013949917\"><span class=\"a-map-sidebar-item__date\"> 10 сентября </span></div>\n<div class=\"a-map-sidebar-item\" data-id=\"1015553771\"><span class=\"a-map-sidebar-item__date\"> 10 сентября </span></div>\n<div class=\"a-map-sidebar-item\" data-id=\"1013879858\"><span class=\"a-map-sidebar-item__date\"> 10 сентября </span></div>\n<div class=\"a-map-sidebar-item\" data-id=\"1014548770\"><span class=\"a-map-sidebar-item__date\"> 10 сентября </span></div>",
+ "adverts": {
+  "1015617521": {
+   "id": 1015617521,
+   "storage": "live",
+   "commentsType": "adv",
+   "isOnMap": true,
+   "hasPrice": true,
+   "price": 28500000,
+   "photos": [
+    {
+     "src": "https://krisha-photos.kcdn.online/webp/d5/d5a10fd6-a696-4006-8ee8-b81183df30f3/1-full.jpg",
+     "w": 900,
+     "h": 1200,
+     "title": "Продажа квартир в Астане: 2-комнатная квартира · 66.6 м² · 11/15 этаж, Бейбарыс Султан 12 за 28.5 млн ₸ — фото 2",
+     "alt": "2-комнатная квартира · 66.6 м² · 11/15 этаж, Бейбарыс Султан 12 за 28.5 млн ₸ в Астане, Сарыарка р-н — фото 2"
+    }
+   ],
+   "hasPackages": false,
+   "title": "2-комнатная квартира · 66.6 м² · 11/15 этаж",
+   "addressTitle": "Бейбарыс Султан 12",
+   "userType": "owner",
+   "square": 66.6,
+   "rooms": 2,
+   "ownerName": "El",
+   "status": "live",
+   "complexId": 20279918,
+   "map": {
+    "lat": 51.171122542088,
+    "lon": 71.367523651667,
+    "zoom": 14,
+    "type": null
+   }
+  },
+  "1011956009": {
+   "id": 1011956009,
+   "storage": "live",
+   "commentsType": "adv",
+   "isOnMap": true,
+   "hasPrice": true,
+   "price": 33500000,
+   "photos": [
+    {
+     "src": "https://krisha-photos.kcdn.online/webp/a9/a9bf2f4d-dcc8-4118-a93d-b0d608c0d8ef/1-full.jpg",
+     "w": 675,
+     "h": 1200,
+     "title": "Продажа квартир в Астане: 3-комнатная квартира · 68 м² · 3/7 этаж, Караменде би Шакаулы 13 за 33.5 млн ₸ — фото 2",
+     "alt": "3-комнатная квартира · 68 м² · 3/7 этаж, Караменде би Шакаулы 13 за 33.5 млн ₸ в Астане, Сарыарка р-н — фото 2"
+    }
+   ],
+   "hasPackages": false,
+   "title": "3-комнатная квартира · 68 м² · 3/7 этаж",
+   "addressTitle": "Караменде би Шакаулы 13",
+   "userType": "specialist",
+   "square": 68,
+   "rooms": 3,
+   "ownerName": "Ерсінқызы Әлия",
+   "status": "live",
+   "complexId": 15010871,
+   "map": {
+    "lat": 51.174430907912,
+    "lon": 71.366082473552,
+    "zoom": 14,
+    "type": "yandex#map"
+   }
+  },
+  "1011297841": {
+   "id": 1011297841,
+   "storage": "live",
+   "commentsType": "adv",
+   "isOnMap": true,
+   "hasPrice": true,
+   "price": 21000000,
+   "photos": [
+    {
+     "src": "https://krisha-photos.kcdn.online/webp/c2/c2a21773-019b-4472-a301-38bdbeb8ea5f/15-full.jpg",
+     "w": 1600,
+     "h": 900,
+     "title": "Продажа квартир в Астане: 1-комнатная квартира · 28 м² · 4/14 этаж, Бейбарыс Султан — Коктал парк за 21 млн ₸ — фото 16",
+     "alt": "1-комнатная квартира · 28 м² · 4/14 этаж, Бейбарыс Султан — Коктал парк за 21 млн ₸ в Астане, Сарыарка р-н — фото 16"
+    }
+   ],
+   "hasPackages": false,
+   "title": "1-комнатная квартира · 28 м² · 4/14 этаж",
+   "addressTitle": "Бейбарыс Султан — Коктал парк",
+   "userType": "specialist",
+   "square": 28,
+   "rooms": 1,
+   "ownerName": "Камзебаева Марал",
+   "status": "live",
+   "complexId": 20945125,
+   "map": {
+    "lat": 51.172615,
+    "lon": 71.362067,
+    "zoom": 14,
+    "type": null
+   }
+  },
+  "1012326131": {
+   "id": 1012326131,
+   "storage": "live",
+   "commentsType": "adv",
+   "isOnMap": true,
+   "hasPrice": true,
+   "price": 34000000,
+   "photos": [
+    {
+     "src": "https://krisha-photos.kcdn.online/webp/7b/7bce1af8-2e4c-4c32-a5e4-423a26d005a8/1-full.jpg",
+     "w": 2448,
+     "h": 3264,
+     "title": "Продажа квартир в Астане: 3-комнатная квартира · 80 м² · 10/15 этаж, Бейбарыс Султан 12 за 34 млн ₸ — фото 2",
+     "alt": "3-комнатная квартира · 80 м² · 10/15 этаж, Бейбарыс Султан 12 за 34 млн ₸ в Астане, Сарыарка р-н — фото 2"
+    }
+   ],
+   "hasPackages": false,
+   "title": "3-комнатная квартира · 80 м² · 10/15 этаж",
+   "addressTitle": "Бейбарыс Султан 12",
+   "userType": "specialist",
+   "square": 80,
+   "rooms": 3,
+   "ownerName": "Кабдуалиев Куаныш",
+   "status": "live",
+   "complexId": 20279918,
+   "map": {
+    "lat": 51.172081384248,
+    "lon": 71.366942299193,
+    "zoom": 14,
+    "type": "yandex#map"
+   }
+  },
+  "1013857140": {
+   "id": 1013857140,
+   "storage": "live",
+   "commentsType": "adv",
+   "isOnMap": true,
+   "hasPrice": true,
+   "price": 23000000,
+   "photos": [
+    {
+     "src": "https://krisha-photos.kcdn.online/webp/61/61d4058d-8bde-4ff9-b8e9-22c09e94317a/10-full.jpg",
+     "w": 1200,
+     "h": 900,
+     "title": "Продажа квартир в Астане: 1-комнатная квартира · 38 м² · 4/23 этаж, Бейбарыс Султан 12 за 23 млн ₸ — фото 11",
+     "alt": "1-комнатная квартира · 38 м² · 4/23 этаж, Бейбарыс Султан 12 за 23 млн ₸ в Астане, Сарыарка р-н — фото 11"
+    }
+   ],
+   "hasPackages": false,
+   "title": "1-комнатная квартира · 38 м² · 4/23 этаж",
+   "addressTitle": "Бейбарыс Султан 12",
+   "userType": "specialist",
+   "square": 38,
+   "rooms": 1,
+   "ownerName": "Джасузакова Лаура",
+   "status": "live",
+   "complexId": 20279918,
+   "map": {
+    "lat": 51.171287499067,
+    "lon": 71.368602644752,
+    "zoom": 17,
+    "type": null
+   }
+  },
+  "1014727622": {
+   "id": 1014727622,
+   "storage": "live",
+   "commentsType": "adv",
+   "isOnMap": true,
+   "hasPrice": true,
+   "price": 31000000,
+   "photos": [
+    {
+     "src": "https://krisha-photos.kcdn.online/webp/49/49118b6f-0789-48e0-a5df-22c523406e9c/3-full.jpg",
+     "w": 400,
+     "h": 400,
+     "title": "Продажа квартир в Астане: 2-комнатная квартира · 58 м² · 7/12 этаж, Улица Чингиз Айтматов 79/1 — Набережная за 31 млн ₸ — фото 4",
+     "alt": "2-комнатная квартира · 58 м² · 7/12 этаж, Улица Чингиз Айтматов 79/1 — Набережная за 31 млн ₸ в Астане, Сарыарка р-н — фото 4"
+    }
+   ],
+   "hasPackages": false,
+   "title": "2-комнатная квартира · 58 м² · 7/12 этаж",
+   "addressTitle": "Улица Чингиз Айтматов 79/1 — Набережная",
+   "userType": "specialist",
+   "square": 58,
+   "rooms": 2,
+   "ownerName": "Имашова Меруерт",
+   "status": "live",
+   "complexId": 22043418,
+   "map": {
+    "lat": 51.168328335539,
+    "lon": 71.372312832573,
+    "zoom": 17,
+    "type": "yandex#map"
+   }
+  },
+  "1012566248": {
+   "id": 1012566248,
+   "storage": "live",
+   "commentsType": "adv",
+   "isOnMap": true,
+   "hasPrice": true,
+   "price": 22499999,
+   "photos": [
+    {
+     "src": "https://krisha-photos.kcdn.online/webp/ed/eddea39e-e079-4f63-81e2-42643851df85/7-full.jpg",
+     "w": 807,
+     "h": 900,
+     "title": "Продажа квартир в Астане: 2-комнатная квартира · 38.81 м² · 8/9 этаж, Улица Чингиз Айтматов, 79/1 за ~ 22.5 млн ₸ — фото 8",
+     "alt": "2-комнатная квартира · 38.81 м² · 8/9 этаж, Улица Чингиз Айтматов, 79/1 за ~ 22.5 млн ₸ в Астане, Сарыарка р-н — фото 8"
+    }
+   ],
+   "hasPackages": false,
+   "title": "2-комнатная квартира · 38.81 м² · 8/9 этаж",
+   "addressTitle": "Улица Чингиз Айтматов, 79/1",
+   "userType": "specialist",
+   "square": 38.81,
+   "rooms": 2,
+   "ownerName": "LEN TATYANA",
+   "status": "live",
+   "complexId": 22043418,
+   "map": {
+    "lat": 51.168219515164,
+    "lon": 71.372290355731,
+    "zoom": 17,
+    "type": null
+   }
+  },
+  "1007470358": {
+   "id": 1007470358,
+   "storage": "live",
+   "commentsType": "adv",
+   "isOnMap": true,
+   "hasPrice": true,
+   "price": 21900000,
+   "photos": [
+    {
+     "src": "https://krisha-photos.kcdn.online/webp/f8/f8ffde48-c149-4809-9a75-2595a746be69/23-full.jpg",
+     "w": 1601,
+     "h": 1200,
+     "title": "Продажа квартир в Астане: 1-комнатная квартира · 44 м² · 5/15 этаж, Бейбарыс Султан 12 за 21.9 млн ₸ — фото 24",
+     "alt": "1-комнатная квартира · 44 м² · 5/15 этаж, Бейбарыс Султан 12 за 21.9 млн ₸ в Астане, Сарыарка р-н — фото 24"
+    }
+   ],
+   "hasPackages": false,
+   "title": "1-комнатная квартира · 44 м² · 5/15 этаж",
+   "addressTitle": "Бейбарыс Султан 12",
+   "userType": "specialist",
+   "square": 44,
+   "rooms": 1,
+   "ownerName": "Мухаметали Алтынтас",
+   "status": "live",
+   "complexId": 20279918,
+   "map": {
+    "lat": 51.171085156466,
+    "lon": 71.367508303473,
+    "zoom": 14,
+    "type": "yandex#map"
+   }
+  },
+  "698717298": {
+   "id": 698717298,
+   "storage": "live",
+   "commentsType": "adv",
+   "isOnMap": true,
+   "hasPrice": true,
+   "price": 33900000,
+   "photos": [
+    {
+     "src": "https://krisha-photos.kcdn.online/webp/e6/e6c3e8b8-c43d-4cae-a399-f45efca1ed69/29-full.jpg",
+     "w": 1200,
+     "h": 900,
+     "title": "Продажа квартир в Астане: 3-комнатная квартира · 72 м² · 5/12 этаж, Караменде би Шакаулы 9/1 за 33.9 млн ₸ — фото 30",
+     "alt": "3-комнатная квартира · 72 м² · 5/12 этаж, Караменде би Шакаулы 9/1 за 33.9 млн ₸ в Астане — фото 30"
+    }
+   ],
+   "hasPackages": false,
+   "title": "3-комнатная квартира · 72 м² · 5/12 этаж",
+   "addressTitle": "Караменде би Шакаулы 9/1",
+   "userType": "specialist",
+   "square": 72,
+   "rooms": 3,
+   "ownerName": "Мухаметали Алтынтас",
+   "status": "live",
+   "complexId": 13577731,
+   "map": {
+    "lat": 51.1738040784,
+    "lon": 71.368907953432,
+    "zoom": 14,
+    "type": "yandex#map"
+   }
+  },
+  "1014495523": {
+   "id": 1014495523,
+   "storage": "live",
+   "commentsType": "adv",
+   "isOnMap": true,
+   "hasPrice": true,
+   "price": 22000000,
+   "photos": [
+    {
+     "src": "https://krisha-photos.kcdn.online/webp/98/982a3978-00df-4891-9779-86ba278303a4/7-full.jpg",
+     "w": 795,
+     "h": 900,
+     "title": "Продажа квартир в Астане: 1-комнатная квартира · 41 м² · 9/9 этаж, Бейбарыс Султан 13/1 за 22 млн ₸ — фото 8",
+     "alt": "1-комнатная квартира · 41 м² · 9/9 этаж, Бейбарыс Султан 13/1 за 22 млн ₸ в Астане, Сарыарка р-н — фото 8"
+    }
+   ],
+   "hasPackages": false,
+   "title": "1-комнатная квартира · 41 м² · 9/9 этаж",
+   "addressTitle": "Бейбарыс Султан 13/1",
+   "userType": "specialist",
+   "square": 41,
+   "rooms": 1,
+   "ownerName": "Тахаров Ислам",
+   "status": "live",
+   "complexId": 21295821,
+   "map": {
+    "lat": 51.169130908453,
+    "lon": 71.368644931992,
+    "zoom": 17,
+    "type": null
+   }
+  },
+  "1013875698": {
+   "id": 1013875698,
+   "storage": "live",
+   "commentsType": "adv",
+   "isOnMap": true,
+   "hasPrice": true,
+   "price": 35000000,
+   "photos": [
+    {
+     "src": "https://krisha-photos.kcdn.online/webp/70/708a127e-ee1a-49e7-8d88-7ea5e75055d5/32-full.jpg",
+     "w": 805,
+     "h": 495,
+     "title": "Продажа квартир в Астане: 3-комнатная квартира · 76 м² · 5/9 этаж, Караменде би Шакаулы 3 — Шаймерден Косшыгулулы за 35 млн ₸ — фото 33",
+     "alt": "3-комнатная квартира · 76 м² · 5/9 этаж, Караменде би Шакаулы 3 — Шаймерден Косшыгулулы за 35 млн ₸ в Астане, Сарыарка р-н — фото 33"
+    }
+   ],
+   "hasPackages": false,
+   "title": "3-комнатная квартира · 76 м² · 5/9 этаж",
+   "addressTitle": "Караменде би Шакаулы 3 — Шаймерден Косшыгулулы",
+   "userType": "specialist",
+   "square": 76,
+   "rooms": 3,
+   "ownerName": "Кайыржан Нәзік",
+   "status": "live",
+   "complexId": 13577731,
+   "map": {
+    "lat": 51.172731711013,
+    "lon": 71.370876694848,
+    "zoom": 14,
+    "type": "yandex#map"
+   }
+  },
+  "1012564519": {
+   "id": 1012564519,
+   "storage": "live",
+   "commentsType": "adv",
+   "isOnMap": true,
+   "hasPrice": true,
+   "price": 34000000,
+   "photos": [
+    {
+     "src": "https://krisha-photos.kcdn.online/webp/86/8683a90c-db42-4d67-a8bc-091136128535/1-full.jpg",
+     "w": 2448,
+     "h": 3264,
+     "title": "Продажа квартир в Астане: 3-комнатная квартира · 80 м² · 1/15 этаж, Бейбарыс Султан 12 за 34 млн ₸ — фото 2",
+     "alt": "3-комнатная квартира · 80 м² · 1/15 этаж, Бейбарыс Султан 12 за 34 млн ₸ в Астане, Сарыарка р-н — фото 2"
+    }
+   ],
+   "hasPackages": false,
+   "title": "3-комнатная квартира · 80 м² · 1/15 этаж",
+   "addressTitle": "Бейбарыс Султан 12",
+   "userType": "specialist",
+   "square": 80,
+   "rooms": 3,
+   "ownerName": "Кабдуалиев Куаныш",
+   "status": "live",
+   "complexId": 20279918,
+   "map": {
+    "lat": 51.171287499067,
+    "lon": 71.368602644752,
+    "zoom": 14,
+    "type": "yandex#map"
+   }
+  },
+  "1015209082": {
+   "id": 1015209082,
+   "storage": "live",
+   "commentsType": "adv",
+   "isOnMap": true,
+   "hasPrice": true,
+   "price": 32500000,
+   "photos": [
+    {
+     "src": "https://krisha-photos.kcdn.online/webp/46/4640bb91-087c-4c64-b53c-0cf69a3dda1b/3-full.jpg",
+     "w": 675,
+     "h": 900,
+     "title": "Продажа квартир в Астане: 2-комнатная квартира · 64.29 м² · 4/10 этаж, Улица Чингиз Айтматов, 79/1 79/1 за 32.5 млн ₸ — фото 4",
+     "alt": "2-комнатная квартира · 64.29 м² · 4/10 этаж, Улица Чингиз Айтматов, 79/1 79/1 за 32.5 млн ₸ в Астане, Сарыарка р-н — фото 4"
+    }
+   ],
+   "hasPackages": false,
+   "title": "2-комнатная квартира · 64.29 м² · 4/10 этаж",
+   "addressTitle": "Улица Чингиз Айтматов, 79/1 79/1",
+   "userType": "specialist",
+   "square": 64.29,
+   "rooms": 2,
+   "ownerName": "Камшилина Марина",
+   "status": "live",
+   "complexId": 22043418,
+   "map": {
+    "lat": 51.168057571883,
+    "lon": 71.372387574803,
+    "zoom": 14,
+    "type": null
+   }
+  },
+  "1014086020": {
+   "id": 1014086020,
+   "storage": "live",
+   "commentsType": "adv",
+   "isOnMap": true,
+   "hasPrice": true,
+   "price": 35000000,
+   "photos": [
+    {
+     "src": "https://krisha-photos.kcdn.online/webp/d2/d253a597-bbab-4768-b948-9ecb8dd9d662/11-full.jpg",
+     "w": 675,
+     "h": 900,
+     "title": "Продажа квартир в Астане: 2-комнатная квартира · 61 м² · 1/9 этаж, Бейбарыс Султан за 35 млн ₸ — фото 12",
+     "alt": "2-комнатная квартира · 61 м² · 1/9 этаж, Бейбарыс Султан за 35 млн ₸ в Астане, Сарыарка р-н — фото 12"
+    }
+   ],
+   "hasPackages": false,
+   "title": "2-комнатная квартира · 61 м² · 1/9 этаж",
+   "addressTitle": "Бейбарыс Султан",
+   "userType": "specialist",
+   "square": 61,
+   "rooms": 2,
+   "ownerName": "Нуркина Гульнара",
+   "status": "live",
+   "complexId": null,
+   "map": {
+    "lat": 51.172654,
+    "lon": 71.367826,
+    "zoom": 16,
+    "type": null
+   }
+  },
+  "1014979351": {
+   "id": 1014979351,
+   "storage": "live",
+   "commentsType": "adv",
+   "isOnMap": true,
+   "hasPrice": true,
+   "price": 30900000,
+   "photos": [
+    {
+     "src": "https://krisha-photos.kcdn.online/webp/b6/b6e65b7c-2702-4c28-ad28-e1b3c5fa9bda/1-full.jpg",
+     "w": 2813,
+     "h": 3750,
+     "title": "Продажа квартир в Астане: 2-комнатная квартира · 65 м² · 15/16 этаж, Бейбарыс Султан 16 за 30.9 млн ₸ — фото 2",
+     "alt": "2-комнатная квартира · 65 м² · 15/16 этаж, Бейбарыс Султан 16 за 30.9 млн ₸ в Астане, Сарыарка р-н — фото 2"
+    }
+   ],
+   "hasPackages": false,
+   "title": "2-комнатная квартира · 65 м² · 15/16 этаж",
+   "addressTitle": "Бейбарыс Султан 16",
+   "userType": "specialist",
+   "square": 65,
+   "rooms": 2,
+   "ownerName": "Тукушев Асхат",
+   "status": "live",
+   "complexId": null,
+   "map": {
+    "lat": 51.171825848491,
+    "lon": 71.366276963828,
+    "zoom": 17,
+    "type": null
+   }
+  },
+  "1014935671": {
+   "id": 1014935671,
+   "storage": "live",
+   "commentsType": "adv",
+   "isOnMap": true,
+   "hasPrice": true,
+   "price": 34000000,
+   "photos": [
+    {
+     "src": "https://krisha-photos.kcdn.online/webp/94/94590be7-310c-4182-98cf-953301411657/39-full.jpg",
+     "w": 900,
+     "h": 1200,
+     "title": "Продажа квартир в Астане: 2-комнатная квартира · 56 м² · 11/12 этаж, Бейбарыс Султана 20 — Срочно! выгодно ! за 34 млн ₸ — фото 40",
+     "alt": "2-комнатная квартира · 56 м² · 11/12 этаж, Бейбарыс Султана 20 — Срочно! выгодно ! за 34 млн ₸ в Астане, Сарыарка р-н — фото 40"
+    }
+   ],
+   "hasPackages": false,
+   "title": "2-комнатная квартира · 56 м² · 11/12 этаж",
+   "addressTitle": "Бейбарыс Султана 20 — Срочно! выгодно !",
+   "userType": "specialist",
+   "square": 56,
+   "rooms": 2,
+   "ownerName": "Тайжанова Гульжихан",
+   "status": "live",
+   "complexId": 20945125,
+   "map": {
+    "lat": 51.172914,
+    "lon": 71.361313,
+    "zoom": 14,
+    "type": null
+   }
+  },
+  "1013949917": {
+   "id": 1013949917,
+   "storage": "live",
+   "commentsType": "adv",
+   "isOnMap": true,
+   "hasPrice": true,
+   "price": 25500000,
+   "photos": [
+    {
+     "src": "https://krisha-photos.kcdn.online/webp/df/df81999b-4e22-4741-8d7f-f057c3a4dd2c/10-full.jpg",
+     "w": 1200,
+     "h": 900,
+     "title": "Продажа квартир в Астане: 2-комнатная квартира · 61 м² · 9/9 этаж, Бейбарыс Сұлтан 12/2 — Бейбарыс Султан улица, 106 школа за 25.5 млн ₸ — фото 11",
+     "alt": "2-комнатная квартира · 61 м² · 9/9 этаж, Бейбарыс Сұлтан 12/2 — Бейбарыс Султан улица, 106 школа за 25.5 млн ₸ в Астане, Сарыарка р-н — фото 11"
+    }
+   ],
+   "hasPackages": false,
+   "title": "2-комнатная квартира · 61 м² · 9/9 этаж",
+   "addressTitle": "Бейбарыс Сұлтан 12/2 — Бейбарыс Султан улица, 106 школа",
+   "userType": "specialist",
+   "square": 61,
+   "rooms": 2,
+   "ownerName": "Рахимова Акжан",
+   "status": "live",
+   "complexId": null,
+   "map": {
+    "lat": 51.172451,
+    "lon": 71.367772,
+    "zoom": 16,
+    "type": null
+   }
+  },
+  "1015553771": {
+   "id": 1015553771,
+   "storage": "live",
+   "commentsType": "adv",
+   "isOnMap": true,
+   "hasPrice": true,
+   "price": 18100000,
+   "photos": [
+    {
+     "src": "https://krisha-photos.kcdn.online/webp/2c/2c3c41ce-8a3f-4cf0-9e86-53148de9c507/1-full.jpg",
+     "w": 900,
+     "h": 1200,
+     "title": "Продажа квартир в Астане: 1-комнатная квартира · 39.9 м² · 10/12 этаж, Бейбарыс Султан 8 за 18.1 млн ₸ — фото 2",
+     "alt": "1-комнатная квартира · 39.9 м² · 10/12 этаж, Бейбарыс Султан 8 за 18.1 млн ₸ в Астане, Сарыарка р-н — фото 2"
+    }
+   ],
+   "hasPackages": true,
+   "title": "1-комнатная квартира · 39.9 м² · 10/12 этаж",
+   "addressTitle": "Бейбарыс Султан 8",
+   "userType": "owner",
+   "square": 39.9,
+   "rooms": 1,
+   "ownerName": "Хозяин",
+   "status": "live",
+   "complexId": 24393796,
+   "map": {
+    "lat": 51.171252644836,
+    "lon": 71.368317305404,
+    "zoom": 14,
+    "type": "yandex#map"
+   }
+  },
+  "1013879858": {
+   "id": 1013879858,
+   "storage": "live",
+   "commentsType": "adv",
+   "isOnMap": true,
+   "hasPrice": true,
+   "price": 36500000,
+   "photos": [
+    {
+     "src": "https://krisha-photos.kcdn.online/webp/d2/d231fa57-11f6-48a4-9a3d-944c86671bc2/31-full.jpg",
+     "w": 900,
+     "h": 1200,
+     "title": "Продажа квартир в Астане: 2-комнатная квартира · 65 м² · 15/16 этаж, Бейбарыс Султан 12 за 36.5 млн ₸ — фото 32",
+     "alt": "2-комнатная квартира · 65 м² · 15/16 этаж, Бейбарыс Султан 12 за 36.5 млн ₸ в Астане, Сарыарка р-н — фото 32"
+    }
+   ],
+   "hasPackages": false,
+   "title": "2-комнатная квартира · 65 м² · 15/16 этаж",
+   "addressTitle": "Бейбарыс Султан 12",
+   "userType": "specialist",
+   "square": 65,
+   "rooms": 2,
+   "ownerName": "Алтыбаева Асемгуль",
+   "status": "live",
+   "complexId": 20279918,
+   "map": {
+    "lat": 51.171287499067,
+    "lon": 71.368602644752,
+    "zoom": 17,
+    "type": null
+   }
+  },
+  "1014548770": {
+   "id": 1014548770,
+   "storage": "live",
+   "commentsType": "adv",
+   "isOnMap": true,
+   "hasPrice": true,
+   "price": 23000000,
+   "photos": [
+    {
+     "src": "https://krisha-photos.kcdn.online/webp/31/3105f1e2-0c6e-448e-ab91-166a38566acb/25-full.jpg",
+     "w": 1836,
+     "h": 3264,
+     "title": "Продажа квартир в Астане: 1-комнатная квартира · 42 м² · 4/12 этаж, Караменде би Шакаулы — Коктал Парк за 23 млн ₸ — фото 26",
+     "alt": "1-комнатная квартира · 42 м² · 4/12 этаж, Караменде би Шакаулы — Коктал Парк за 23 млн ₸ в Астане, Сарыарка р-н — фото 26"
+    }
+   ],
+   "hasPackages": false,
+   "title": "1-комнатная квартира · 42 м² · 4/12 этаж",
+   "addressTitle": "Караменде би Шакаулы — Коктал Парк",
+   "userType": "specialist",
+   "square": 42,
+   "rooms": 1,
+   "ownerName": "Бегаева Эльмира",
+   "status": "live",
+   "complexId": 13577731,
+   "map": {
+    "lat": 51.1738040784,
+    "lon": 71.368907953432,
+    "zoom": 14,
+    "type": null
+   }
+  }
+ },
+ "pager": "<nav class=\"paginator keyboard-is-disabled\">\n    \n                        <a class=\"paginator__btn paginator__btn--active\" href=\"\" data-page=\"1\">\n                1\n            </a>\n                                <a class=\"paginator__btn \" href=\"?page=2\" data-page=\"2\">\n                2\n            </a>\n                                <a class=\"paginator__btn \" href=\"?page=3\" data-page=\"3\">\n                3\n            </a>\n                                <a class=\"paginator__btn \" href=\"?page=4\" data-page=\"4\">\n                4\n            </a>\n                    <span class=\"paginator__btn\">...</span>\n                                <a class=\"paginator__btn \" href=\"?page=15\" data-page=\"15\">\n                15\n            </a>\n            \n            <a class=\"paginator__btn paginator__btn--next\" href=\"?page=2\" data-page=\"2\">\n            \n            <i class=\"tfi-chevron-right-small\"></i>\n        </a>\n    </nav>",
+ "page": 1,
+ "priceHistory": [],
+ "priceDirections": [],
+ "hasActiveSubscription": false
+}
